@@ -1,0 +1,31 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Secret key
+.secret_key
+
+# Media files (uploads)
+/media/
+
+# Static files (CSS, JavaScript, etc.)
+/static/
+
+# Virtual environment
+venv/
+.env
+
+# Development settings
+settings.local.py
+
+# Production settings
+settings.production.py
+
+# Ignore IDE and editor files (may vary depending on your preferences)
+.vscode/
+.idea/
+*.swp
+*~

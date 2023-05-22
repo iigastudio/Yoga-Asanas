@@ -1,0 +1,40 @@
+<!-- Inherit from layout template -->
+{% extends "layout.html" %}
+
+<!-- Override content block in layout -->
+{% block content %}
+<div
+  style="
+    background-color: white;
+    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+  "
+>
+  <h1>{{page_title}}</h1>
+
+  <h2>Pose: {{ pose.id }}</h2>
+  <h3>Name: {{ pose.name }}</h3>
+  <h4>Description: {{ pose.description }}</h4>
+  <h4>Level: {{ pose.level }}</h4>
+  {% if pose.image %}
+  <p align="center">
+    <img
+      style="height: 40vh; width: auto"
+      src="{{ pose.image_url|default_if_none:'#' }}"
+    />
+  </p>
+  {% else %}
+  <h3>No image to display</h3>
+  {% endif %}
+  <h4>Posted by: {{ pose.posted_by }}</h4>
+  <h5>Posted on: {{ pose.created_at }}</h5>
+  <h5>Last Updated: {{ pose.updated_at }}</h5>
+
+  {% if pose.posted_by == request.user %}
+  <h5><a href="{% url 'update_pose' pose.id %}">Edit Pose Pose</a></h5>
+  <h5><a href="{% url 'delete_pose' pose.id %}">Delete Pose Pose</a></h5>
+  {% endif %}
+</div>
+{% endblock %}
